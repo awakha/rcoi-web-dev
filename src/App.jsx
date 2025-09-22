@@ -8,14 +8,16 @@ import Gia11 from "./pages/Gia11";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import "./App.css";
+import AuthButton from "./components/Header/AuthButton";
 
 function App() {
   return (
     <Router>
+      <AuthButton />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<About />} />
+        <Route path="/news" element={<News />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/gia9" element={<Gia9 />} />
         <Route path="/gia11" element={<Gia11 />} />
