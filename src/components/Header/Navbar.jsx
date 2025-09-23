@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import { Box, Link as MuiLink } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const menuItems = [
@@ -10,17 +10,33 @@ const menuItems = [
   { name: "О нас", path: "/about" },
   { name: "Контакты", path: "/contacts" },
 ];
+
 function Navbar() {
   return (
-    <nav>
-      <ul>
-        {menuItems.map((item) => (
-          <li key={item.path}>
-            <Link to={item.path}>{item.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Box
+      component="nav"
+      sx={{
+        display: "flex",
+        gap: "40px",
+        listStyle: "none",
+        pt: 4.3,
+        m: 0,
+      }}
+    >
+      {menuItems.map((item) => (
+        <MuiLink
+          key={item.path}
+          component={Link}
+          to={item.path}
+          underline="none"
+          color="white"
+          sx={{ fontSize: "18px", fontWeight: 500 }}
+        >
+          {item.name}
+        </MuiLink>
+      ))}
+    </Box>
   );
 }
+
 export default Navbar;
