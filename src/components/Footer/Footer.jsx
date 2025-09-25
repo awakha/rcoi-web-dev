@@ -1,6 +1,6 @@
 import { CssBaseline, Box, Container, Grid, Typography, Link, Divider } from '@mui/material';
 import { Email, Phone, LocationOn } from '@mui/icons-material';
-import Logo from '../img/icons/logo.svg';
+import Logo from '../../assets/images/logo.svg';
 
 export default function Footer() {
   const hoverLink = {
