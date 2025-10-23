@@ -29,7 +29,7 @@ export default function ProgressBar() {
         <Typography sx={{ fontSize: 14 }}>Лет работы</Typography>
         <Box sx={{ display: 'inline', position: 'absolute', top: 50, left: 54 }}>
           <Typography fontSize="32px" fontWeight="bold">
-            15
+            16
           </Typography>
         </Box>
       </Box>

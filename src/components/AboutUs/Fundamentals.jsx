@@ -8,16 +8,16 @@ import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOu
 export default function Fundamentals() {
   return (
     <>
-      {' '}
       <Box sx={{ display: 'flex', pb: 10 }}>
-        <Box>
-          <Typography fontSize="40px" fontWeight="bold" width="420px">
+        <Box sx={{ display: 'flex', justifyContent: 'end', width: '1000px' }}>
+          <Typography fontSize="40px" fontWeight="bold" width="500px">
             Ключевые принципы работы
           </Typography>
         </Box>
         <Box
           sx={{
             display: 'flex',
+            justifyContent: 'center',
             flexWrap: 'wrap',
             flexDirection: 'row',
             gap: '40px',

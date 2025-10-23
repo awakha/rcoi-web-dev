@@ -11,7 +11,7 @@ export default function AboutUs() {
       <CssBaseline />
       {
         <Box component="section">
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <ProgressBar />
             <Fundamentals />
             <OurTeam />

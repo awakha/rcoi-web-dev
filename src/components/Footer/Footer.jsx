@@ -17,7 +17,7 @@ export default function Footer() {
       <CssBaseline />
       {
         <Box component="footer" sx={{ color: 'white', backgroundColor: '#1E212C', py: 8 }}>
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <Grid container spacing={4} xs={12} md={4}>
               <Grid size={{ xs: 12, md: 6 }} sx={{ mb: 3 }}>
                 <Link component="img" src={Logo} sx={{ width: 140 }}></Link>
