@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import {
-  TextField,
-  Button,
-  Card,
-  CardContent,
-  Typography,
-  Stack,
-} from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { TextField, Button, Card, CardContent, Typography, Stack } from '@mui/material';
 
 function News() {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
   const [newsList, setNewsList] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: "",
+    content: '',
   });
 
   // Получаем новости с сервера
   const fetchNews = async () => {
     try {
-      const res = await fetch("/api/news");
+      const res = await fetch('/api/news');
       const data = await res.json();
-      console.log("Полученные новости:", data);
+      console.log('Полученные новости:', data);
       setNewsList(data);
     } catch (error) {
       console.error(error);
-      alert("Ошибка соединения с сервером");
+      alert('Ошибка соединения с сервером');
     }
   };
 
@@ -46,25 +39,25 @@ function News() {
 
     for (const file of selectedFiles) {
       const formData = new FormData();
-      formData.append("file", file); // ключ должен быть "file", как в Swagger
+      formData.append('file', file); // ключ должен быть "file", как в Swagger
 
       try {
-        const res = await fetch("/api/media", {
-          method: "POST",
+        const res = await fetch('/api/media', {
+          method: 'POST',
           body: formData,
         });
 
         if (!res.ok) {
           const text = await res.text();
-          console.error("Ответ от сервера:", text);
+          console.error('Ответ от сервера:', text);
           throw new Error(`Ошибка при загрузке медиа (${res.status})`);
         }
 
         const data = await res.json();
-        console.log("Загружено медиа:", data);
+        console.log('Загружено медиа:', data);
         mediaIds.push(data.id);
       } catch (error) {
-        console.error("Ошибка загрузки файла", file.name, ":", error);
+        console.error('Ошибка загрузки файла', file.name, ':', error);
         alert(`Ошибка загрузки файла ${file.name}: ${error.message}`);
       }
     }
@@ -87,48 +80,48 @@ function News() {
     };
 
     try {
-      const res = await fetch("/api/news", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newsData),
       });
 
       if (res.ok) {
         const createdNews = await res.json();
-        alert("Новость успешно добавлена ");
+        alert('Новость успешно добавлена ');
 
         setNewsList((prev) => [createdNews, ...prev]);
-        setTitle("");
-        setCategory("");
+        setTitle('');
+        setCategory('');
         setSelectedFiles([]);
         editor.commands.clearContent();
       } else {
-        alert("Ошибка при добавлении новости ");
+        alert('Ошибка при добавлении новости ');
       }
     } catch (error) {
       console.error(error);
-      alert("Ошибка соединения с сервером ");
+      alert('Ошибка соединения с сервером ');
     }
   };
 
   // Удаление новости
   const deleteNews = async (id) => {
     try {
-      const res = await fetch(`/api/news/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/news/${id}`, { method: 'DELETE' });
       if (res.ok) {
-        alert("Новость удалена ");
+        alert('Новость удалена ');
         setNewsList(newsList.filter((n) => n.id !== id));
       } else {
-        alert("Ошибка при удалении новости ");
+        alert('Ошибка при удалении новости ');
       }
     } catch (error) {
       console.error(error);
-      alert("Ошибка соединения с сервером ");
+      alert('Ошибка соединения с сервером ');
     }
   };
 
   return (
-    <Stack spacing={4} sx={{ maxWidth: 800, margin: "0 auto", mt: 4 }}>
+    <Stack spacing={4} sx={{ maxWidth: 800, margin: '0 auto', mt: 4 }}>
       <Card>
         <CardContent>
           <Typography variant="h5" gutterBottom>
@@ -167,12 +160,11 @@ function News() {
             {/* TipTap редактор */}
             <div
               style={{
-                border: "1px solid #ccc",
+                border: '1px solid #ccc',
                 borderRadius: 4,
                 minHeight: 200,
                 padding: 8,
-              }}
-            >
+              }}>
               <EditorContent editor={editor} />
             </div>
 
@@ -194,10 +186,7 @@ function News() {
                 Категория: {news.category}
               </Typography>
 
-              <div
-                dangerouslySetInnerHTML={{ __html: news.content }}
-                style={{ marginTop: 8 }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: news.content }} style={{ marginTop: 8 }} />
 
               {/* Отображение медиа */}
               {news.media && news.media.length > 0 && (
@@ -217,8 +206,7 @@ function News() {
                 variant="outlined"
                 color="error"
                 sx={{ mt: 2 }}
-                onClick={() => deleteNews(news.id)}
-              >
+                onClick={() => deleteNews(news.id)}>
                 Удалить
               </Button>
             </CardContent>
