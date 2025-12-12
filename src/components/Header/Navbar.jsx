@@ -1,14 +1,14 @@
-import { Box, Link as MuiLink } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box, Link as MuiLink } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const menuItems = [
-  { name: 'Главная', path: '/' },
-  // { name: "Новости", path: "/news" },
-  { name: 'Документы', path: '/documents' },
-  { name: 'ГИА-9', path: '/gia9' },
-  { name: 'ГИА-11', path: '/gia11' },
-  { name: 'О нас', path: '/about' },
-  { name: 'Контакты', path: '/contacts' },
+  { name: "Главная", path: "/" },
+  { name: "Новости", path: "/news" },
+  { name: "Документы", path: "/documents" },
+  { name: "ГИА-9", path: "/gia9" },
+  { name: "ГИА-11", path: "/gia11" },
+  { name: "О нас", path: "/about" },
+  { name: "Контакты", path: "/contacts" },
 ];
 
 function Navbar() {
@@ -16,12 +16,13 @@ function Navbar() {
     <Box
       component="nav"
       sx={{
-        display: 'flex',
-        gap: '40px',
-        listStyle: 'none',
+        display: "flex",
+        gap: "40px",
+        listStyle: "none",
         pt: 4.3,
         m: 0,
-      }}>
+      }}
+    >
       {menuItems.map((item) => (
         <MuiLink
           key={item.path}
@@ -29,7 +30,8 @@ function Navbar() {
           to={item.path}
           underline="none"
           color="white"
-          sx={{ fontSize: '18px', fontWeight: 500 }}>
+          sx={{ fontSize: "18px", fontWeight: 500 }}
+        >
           {item.name}
         </MuiLink>
       ))}

@@ -1,24 +1,18 @@
-import { CssBaseline, Box, Container } from '@mui/material';
-import {} from '@mui/icons-material';
-import ProgressBar from './ProgressBar';
-import Fundamentals from './Fundamentals';
-import OurTeam from './OurTeam';
-import Maps from './Maps';
+import ProgressBar from "./ProgressBar";
+import Fundamentals from "./Fundamentals";
+import OurTeam from "./OurTeam";
+import Contacts from "./Contacts";
+import { Box, Container } from "@mui/material";
 
 export default function AboutUs() {
   return (
-    <>
-      <CssBaseline />
-      {
-        <Box component="section">
-          <Container maxWidth="xl">
-            <ProgressBar />
-            <Fundamentals />
-            <OurTeam />
-            <Maps />
-          </Container>
-        </Box>
-      }
-    </>
+    <Box component="main">
+      <Container maxWidth="xl">
+        <ProgressBar />
+        <Fundamentals />
+        <OurTeam />
+        <Contacts />
+      </Container>
+    </Box>
   );
 }

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import headerBg from "../../assets/images/header-bg.png";
 import Navbar from "./Navbar";
-import About from "../../pages/About";
+
 import logo from "../../assets/images/logo.svg";
 
 function Header() {
@@ -15,10 +15,10 @@ function Header() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         display: "flex",
-        alignItems: "flex-start", // по верхнему краю
+        alignItems: "flex-start",
         justifyContent: "center",
-        pt: "20px", // небольшой верхний отступ, если нужно
-        gap: "60px", // фиксированный промежуток между логотипом и Navbar
+        pt: "20px",
+        gap: "60px",
       }}
     >
       <Box
