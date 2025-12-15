@@ -1,10 +1,10 @@
-import ProgressBar from "./ProgressBar";
-import Fundamentals from "./Fundamentals";
-import OurTeam from "./OurTeam";
-import Contacts from "./Contacts";
+import ProgressBar from "./ProgressBar.js";
+import Fundamentals from "./Fundamentals.js";
+import OurTeam from "./OurTeam.js";
+import Contacts from "./Contacts.js";
 import { Box, Container } from "@mui/material";
 
-export default function AboutUs() {
+const AboutUs: React.FC = () => {
   return (
     <Box component="main">
       <Container maxWidth="xl">
@@ -15,4 +15,6 @@ export default function AboutUs() {
       </Container>
     </Box>
   );
-}
+};
+
+export default AboutUs;
