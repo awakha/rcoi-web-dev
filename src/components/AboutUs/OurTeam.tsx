@@ -6,8 +6,22 @@ import Husein from '../../assets/images/ourteam/Husein.jpg';
 import Zelem from '../../assets/images/ourteam/Zelem.jpg';
 import Khava from '../../assets/images/ourteam/Khava.jpg';
 
+interface TeamMember {
+  id: number;
+  imgUrl: string;
+  fullName: string;
+  rank: string;
+  info: string;
+  git: boolean;
+
+  whatsapp?: string;
+  instagram?: string;
+  telegram?: string;
+  github?: string;
+}
+
 export default function OurTeam() {
-  const cardsData = [
+  const teamMembers: TeamMember[] = [
     {
       id: 1,
       imgUrl: Boss,
@@ -31,6 +45,7 @@ export default function OurTeam() {
       rank: 'Тимлид',
       info: 'Формально не в штате, но навсегда в сердцах команды.',
       git: true,
+      github: 'https://github.com/zelem',
     },
     {
       id: 4,
@@ -39,8 +54,18 @@ export default function OurTeam() {
       rank: 'Главный специалист по аналитике и фронтенд-разработке',
       info: 'Решает сложные задачи и делает так, что всё работает гладко.',
       git: true,
+      github: 'https://github.com/khava',
     },
   ];
+
+  const socialLinkStyle = {
+    color: '#fff',
+    transition: 'color 0.2s ease',
+    '&:hover': {
+      transform: 'scale(1.1)',
+      transition: 'all 0.2s ease',
+    },
+  } as const;
 
   return (
     <>
@@ -58,16 +83,15 @@ export default function OurTeam() {
             alignItems: 'center',
             justifyContent: 'start',
           }}>
-          {cardsData.map((item) => (
-            <Box //cards
-              key={item.id}
+          {teamMembers.map((member) => (
+            <Box // карточка
+              key={member.id}
               sx={{
                 width: '100%',
                 height: '400px',
                 position: 'relative',
                 overflow: 'hidden',
                 mb: 2,
-
                 borderRadius: '15px',
                 '&:hover > :nth-of-type(1)': {
                   right: 0,
@@ -75,7 +99,8 @@ export default function OurTeam() {
               }}>
               <Box
                 component="img"
-                src={item.imgUrl}
+                src={member.imgUrl}
+                alt={`Фото ${member.fullName}`}
                 sx={{
                   width: '100%',
                   height: '400px',
@@ -85,8 +110,9 @@ export default function OurTeam() {
                   top: '50%',
                   transform: 'translate(-50%,-50%)',
                   objectFit: 'cover',
-                }}></Box>
-              <Box //card body
+                }}
+              />
+              <Box // тело карточки
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -104,12 +130,12 @@ export default function OurTeam() {
                   transition: '.5s',
                 }}>
                 <Typography variant="h6" fontWeight="bold">
-                  {item.fullName}
+                  {member.fullName}
                 </Typography>
                 <Typography variant="subtitle1" sx={{ py: 1 }}>
-                  {item.rank}
+                  {member.rank}
                 </Typography>
-                <Typography variant="body2">{item.info}</Typography>
+                <Typography variant="body2">{member.info}</Typography>
 
                 <Box
                   sx={{
@@ -118,18 +144,50 @@ export default function OurTeam() {
                     alignItems: 'end',
                     gap: '5px',
                   }}>
-                  <Link href="#" target="_blank">
-                    <WhatsApp sx={{ color: '#fff', '&:hover': { color: 'green' } }} />
+                  <Link
+                    href={member.whatsapp || '#'}
+                    target="_blank"
+                    sx={{ display: 'inline-flex' }}>
+                    <WhatsApp
+                      sx={{
+                        ...socialLinkStyle,
+                        '&:hover': { color: 'green' },
+                      }}
+                    />
                   </Link>
-                  <Link href="#" target="_blank">
-                    <Instagram sx={{ color: '#fff', '&:hover': { color: '#E4405F' } }} />
+                  <Link
+                    href={member.instagram || '#'}
+                    target="_blank"
+                    sx={{ display: 'inline-flex' }}>
+                    <Instagram
+                      sx={{
+                        ...socialLinkStyle,
+                        '&:hover': { color: '#E4405F' },
+                      }}
+                    />
                   </Link>
-                  <Link href="#" target="_blank">
-                    <Telegram sx={{ color: '#fff', '&:hover': { color: '#078dfaff' } }} />
+                  <Link
+                    href={member.telegram || '#'}
+                    target="_blank"
+                    sx={{ display: 'inline-flex' }}>
+                    <Telegram
+                      sx={{
+                        ...socialLinkStyle,
+                        '&:hover': { color: '#078dfaff' },
+                      }}
+                    />
                   </Link>
-                  {item.git && (
-                    <Link href="#" target="_blank">
-                      <GitHub sx={{ color: '#fff', '&:hover': { color: 'gray' } }} />
+                  {member.git && (
+                    <Link
+                      href={member.github || '#'}
+                      target="_blank"
+                      sx={{ display: 'inline-flex' }}>
+                      <GitHub
+                        sx={{
+                          ...socialLinkStyle,
+                          '&:hover': { color: 'gray' },
+                        }}
+                      />
                     </Link>
                   )}
                 </Box>
