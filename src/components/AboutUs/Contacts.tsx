@@ -2,10 +2,16 @@ import { Box, Typography, Divider } from '@mui/material';
 import UpdateRoundedIcon from '@mui/icons-material/UpdateRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
 import PushPinRoundedIcon from '@mui/icons-material/PushPinRounded';
-function Maps() {
+function Contacts() {
   return (
     <>
-      <Divider sx={{ backgroundColor: 'rgba(255,255,255,0.3)', width: '80%', mx: 'auto' }} />
+      <Divider
+        sx={{
+          backgroundColor: 'rgba(255,255,255,0.3)',
+          width: '80%',
+          mx: 'auto',
+        }}
+      />
       <Box
         sx={{
           display: 'flex',
@@ -16,9 +22,16 @@ function Maps() {
           <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A16f3b5975ca7cc8b63f79c0f6f9acadcb4e2a7df49c47ad07a23717245c7b932&amp;source=constructor"
             width="500"
-            height="400"></iframe>
+            height="400"
+          />
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 9 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 9,
+          }}>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <PushPinRoundedIcon sx={{ fontSize: 60 }} />
             <Box>
@@ -47,4 +60,4 @@ function Maps() {
   );
 }
 
-export default Maps;
+export default Contacts;
