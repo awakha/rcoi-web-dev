@@ -1,108 +1,146 @@
-import { CssBaseline, CircularProgress, Box, Typography, Container } from '@mui/material';
+import { CircularProgress, Box, Typography } from '@mui/material';
+
+interface ProgressItem {
+  id: number;
+  value: number;
+  label: string;
+  valueText: string;
+  color: string;
+}
+
 export default function ProgressBar() {
+  const progressItems: ProgressItem[] = [
+    {
+      id: 1,
+      value: 90,
+      label: 'Лет работы',
+      valueText: '16',
+      color: '#5A87FC',
+    },
+    {
+      id: 2,
+      value: 75,
+      label: 'Обработанных работ',
+      valueText: '150000',
+      color: '#F89828',
+    },
+    {
+      id: 3,
+      value: 85,
+      label: 'ППЭ',
+      valueText: '130',
+      color: 'secondary',
+    },
+    {
+      id: 4,
+      value: 100,
+      label: 'Выполнено КИМ в срок',
+      valueText: '100%',
+      color: '#03CEA4',
+    },
+  ];
+
+  const getTextPosition = (valueText: string): { left: string } => {
+    const length = valueText.length;
+    if (length <= 2) return { left: '49%' };
+    if (length <= 4) return { left: '49%' };
+    return { left: '50%' };
+  };
+
   return (
     <Box
+      component="section"
       sx={{
-        py: 20,
+        py: { xs: 10, md: 20 },
         display: 'flex',
-        flexWrap: 'wrap',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 15,
       }}>
+      <Typography
+        variant="h4"
+        component="h2"
+        sx={{
+          mb: { xs: 5, md: 10 },
+          textAlign: 'center',
+          fontWeight: 'bold',
+        }}>
+        Наши достижения
+      </Typography>
+
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: 'repeat(2, 1fr)',
+            md: 'repeat(4, 1fr)',
+          },
+          gap: { xs: 5, md: 10 },
           alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
+          justifyItems: 'center',
+          maxWidth: '1200px',
+          width: '100%',
         }}>
-        <CircularProgress
-          enableTrackSlot
-          variant="determinate"
-          value={90}
-          thickness={1.8}
-          size="148px"
-          sx={{ opacity: 0.75, mb: 2, color: '#5A87FC' }}
-        />
-        <Typography sx={{ fontSize: 14 }}>Лет работы</Typography>
-        <Box sx={{ display: 'inline', position: 'absolute', top: 50, left: 54 }}>
-          <Typography fontSize="32px" fontWeight="bold">
-            16
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-        }}>
-        <CircularProgress
-          enableTrackSlot
-          variant="determinate"
-          value={75}
-          thickness={1.8}
-          size="148px"
-          sx={{ opacity: 0.75, mb: 2, color: '#F89828' }}
-        />
-        <Typography sx={{ fontSize: 14 }}>Обработанных работ</Typography>
-        <Box sx={{ display: 'inline', position: 'absolute', top: 50, left: 20 }}>
-          <Typography fontSize="32px" fontWeight="bold">
-            150000
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-        }}>
-        <CircularProgress
-          enableTrackSlot
-          variant="determinate"
-          value={85}
-          thickness={1.8}
-          color="secondary"
-          size="148px"
-          sx={{ opacity: 0.7, mb: 2 }}
-        />
-        <Typography sx={{ fontSize: 14 }}>ППЭ</Typography>
-        <Box sx={{ display: 'inline', position: 'absolute', top: 50, left: 45 }}>
-          <Typography fontSize="32px" fontWeight="bold">
-            130
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-        }}>
-        <CircularProgress
-          label="hi"
-          enableTrackSlot
-          variant="determinate"
-          value={100}
-          thickness={1.8}
-          size="148px"
-          sx={{ opacity: 0.75, mb: 2, color: '#03CEA4' }}
-        />
-        <Typography sx={{ fontSize: 14 }}>Выполнено КИМ в срок</Typography>
-        <Box sx={{ display: 'inline', position: 'absolute', top: 50, left: 40 }}>
-          <Typography fontSize="32px" fontWeight="bold">
-            100%
-          </Typography>
-        </Box>
+        {progressItems.map((item) => {
+          const textPosition = getTextPosition(item.valueText);
+
+          return (
+            <Box
+              key={item.id}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                textAlign: 'center',
+                maxWidth: '200px',
+              }}>
+              {/* Контейнер для прогресс-бара */}
+              <Box sx={{ position: 'relative', mb: 2 }}>
+                <CircularProgress
+                  enableTrackSlot
+                  variant="determinate"
+                  value={item.value}
+                  thickness={1.8}
+                  size={148}
+                  sx={{
+                    opacity: 0.75,
+                    color: item.color,
+                    ...(item.color === 'secondary' && {
+                      color: 'secondary.main',
+                    }),
+                  }}
+                />
+
+                {/* Текст внутри круга */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '48%',
+                    left: textPosition.left,
+                    transform: 'translate(-50%, -50%)',
+                    textAlign: 'center',
+                  }}>
+                  <Typography fontSize="32px" fontWeight="bold" sx={{ lineHeight: 1 }}>
+                    {item.valueText}
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* Подпись под кругом */}
+              <Typography
+                sx={{
+                  fontSize: 14,
+                  fontWeight: 'medium',
+                  mb: 0.5,
+                }}>
+                {item.label}
+              </Typography>
+            </Box>
+          );
+        })}
       </Box>
     </Box>
   );
